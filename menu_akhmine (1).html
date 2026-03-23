@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace Akhmine — Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean: #0b9db5;
+    --ocean-deep: #065f6e;
+    --ocean-light: #7fdbea;
+    --sand: #f5e6c8;
+    --sand-dark: #e8c98a;
+    --coral: #e8603a;
+    --white: #fffef9;
+    --text-dark: #2c1a0e;
+    --gold: #d4a017;
+    --green-sea: #2a9d6f;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--ocean-deep); font-family:'Nunito',sans-serif; color:var(--text-dark); min-height:100vh; }
+  .page { max-width:1100px; margin:0 auto; background:var(--white); position:relative; overflow:hidden; }
+
+  /* ── LANG BAR ── */
+  .lang-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--ocean-deep);
+    display: flex; justify-content: center; gap: 8px;
+    padding: 10px 16px;
+    box-shadow: 0 3px 16px rgba(0,0,0,0.35);
+  }
+  .lang-btn {
+    display: flex; align-items: center; gap: 7px;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    border-radius: 30px; padding: 6px 16px;
+    font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: all 0.25s; letter-spacing: 0.5px;
+  }
+  .lang-btn .flag { font-size: 18px; }
+  .lang-btn:hover { background: rgba(255,255,255,0.18); color:#fff; }
+  .lang-btn.active {
+    background: var(--coral); border-color: var(--coral); color: #fff;
+    box-shadow: 0 4px 14px rgba(232,96,58,0.5); transform: translateY(-2px);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(160deg, var(--ocean-deep) 0%, var(--ocean) 55%, var(--ocean-light) 100%);
+    padding: 0 0 60px; position: relative; overflow: hidden;
+  }
+  .header::before {
+    content:''; position:absolute; top:-20px; left:-10%;
+    width:120%; height:120px; background:rgba(255,255,255,0.06); border-radius:50%;
+  }
+  .header::after {
+    content:''; position:absolute; bottom:0; left:0; right:0;
+    height:70px; background:var(--white); clip-path:ellipse(55% 100% at 50% 100%);
+  }
+  .sun {
+    position:absolute; top:30px; right:80px; width:80px; height:80px;
+    background:radial-gradient(circle,#ffe066 50%,#ffb300 100%); border-radius:50%;
+    box-shadow:0 0 0 12px rgba(255,224,102,0.2),0 0 0 26px rgba(255,193,7,0.1);
+    animation:pulse-sun 4s ease-in-out infinite;
+  }
+  @keyframes pulse-sun {
+    0%,100%{box-shadow:0 0 0 12px rgba(255,224,102,0.2),0 0 0 26px rgba(255,193,7,0.1);}
+    50%{box-shadow:0 0 0 18px rgba(255,224,102,0.3),0 0 0 36px rgba(255,193,7,0.15);}
+  }
+  .birds {
+    position:absolute; top:50px; left:60px; opacity:0.5;
+    font-size:22px; letter-spacing:8px; animation:float-birds 6s ease-in-out infinite;
+  }
+  @keyframes float-birds{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+  .logo-wrap {
+    display:flex; flex-direction:column; align-items:center;
+    padding:50px 20px 30px; position:relative; z-index:1;
+  }
+  .logo-sub {
+    font-size:13px; font-weight:700; letter-spacing:6px;
+    color:var(--ocean-light); text-transform:uppercase; margin-bottom:10px;
+  }
+  .logo-main {
+    font-family:'Pacifico',cursive; font-size:clamp(52px,8vw,90px);
+    color:var(--white); line-height:1;
+    text-shadow:4px 6px 0 var(--ocean-deep),0 0 40px rgba(0,0,0,0.3);
+  }
+  .logo-accent {
+    font-family:'Pacifico',cursive; font-size:clamp(28px,4vw,44px);
+    color:var(--sand); margin-top:4px;
+  }
+  .arabic-name { font-size:20px; color:rgba(255,255,255,0.7); margin-top:6px; letter-spacing:3px; }
+  .tagline {
+    margin-top:16px; background:var(--coral); color:#fff;
+    padding:6px 24px; border-radius:30px; font-size:13px; font-weight:700;
+    letter-spacing:2px; text-transform:uppercase; box-shadow:0 4px 14px rgba(232,96,58,0.5);
+  }
+
+  /* ── MENU TITLE ── */
+  .menu-banner { text-align:center; padding:30px 20px 10px; }
+  .menu-banner h2 {
+    font-family:'Pacifico',cursive; font-size:clamp(38px,6vw,64px);
+    color:var(--ocean-deep); text-shadow:3px 3px 0 var(--ocean-light);
+    display:inline-block; position:relative;
+  }
+  .menu-banner h2::before,.menu-banner h2::after {
+    content:'🐚'; font-size:28px; position:absolute; top:50%; transform:translateY(-50%);
+  }
+  .menu-banner h2::before{right:calc(100% + 14px);}
+  .menu-banner h2::after{left:calc(100% + 14px);}
+  .menu-separator {
+    display:flex; align-items:center; gap:12px; max-width:500px; margin:12px auto 0;
+  }
+  .menu-separator span{flex:1;height:2px;background:linear-gradient(90deg,transparent,var(--ocean-light),transparent);}
+  .menu-separator i{color:var(--coral);font-size:18px;}
+
+  /* ── GRID ── */
+  .menu-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+    padding:30px 30px 40px;
+    background:
+      radial-gradient(ellipse at 10% 20%,rgba(11,157,181,.07) 0%,transparent 50%),
+      radial-gradient(ellipse at 90% 80%,rgba(232,96,58,.06) 0%,transparent 50%);
+  }
+  @media(max-width:700px){.menu-grid{grid-template-columns:1fr;padding:20px 16px;}}
+  @media(min-width:701px) and (max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr);}}
+
+  .section{padding:18px 16px;}
+  .section-inner {
+    background:var(--white); border-radius:18px; overflow:hidden;
+    height:100%; box-shadow:0 4px 20px rgba(0,0,0,.07);
+    border:1.5px solid rgba(11,157,181,.12);
+    transition:transform .3s,box-shadow .3s;
+    opacity:0; animation:fade-in-up .5s forwards;
+  }
+  .section-inner:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.13);}
+  .section:nth-child(1) .section-inner{animation-delay:.05s;}
+  .section:nth-child(2) .section-inner{animation-delay:.10s;}
+  .section:nth-child(3) .section-inner{animation-delay:.15s;}
+  .section:nth-child(4) .section-inner{animation-delay:.20s;}
+  .section:nth-child(5) .section-inner{animation-delay:.25s;}
+  .section:nth-child(6) .section-inner{animation-delay:.30s;}
+  .section:nth-child(7) .section-inner{animation-delay:.35s;}
+  .section:nth-child(8) .section-inner{animation-delay:.40s;}
+  .section:nth-child(9) .section-inner{animation-delay:.45s;}
+  .section:nth-child(10) .section-inner{animation-delay:.50s;}
+  .section:nth-child(11) .section-inner{animation-delay:.55s;}
+  .section:nth-child(12) .section-inner{animation-delay:.60s;}
+  @keyframes fade-in-up{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+  .section-header{padding:14px 18px 12px;display:flex;align-items:center;gap:10px;}
+  .section-icon{font-size:22px;flex-shrink:0;}
+  .section-title{
+    font-family:'Playfair Display',serif; font-size:17px;
+    font-weight:700; font-style:italic; color:var(--white); line-height:1.1;
+  }
+  .theme-ocean {background:linear-gradient(135deg,var(--ocean-deep),var(--ocean));}
+  .theme-coral {background:linear-gradient(135deg,var(--coral),#c0392b);}
+  .theme-sand  {background:linear-gradient(135deg,#b5860d,var(--gold));}
+  .theme-green {background:linear-gradient(135deg,var(--green-sea),#1a6b47);}
+  .theme-purple{background:linear-gradient(135deg,#7b5ea7,#4a2c82);}
+  .theme-teal  {background:linear-gradient(135deg,#1a8fa0,#0d6070);}
+  .theme-rose  {background:linear-gradient(135deg,#c0605a,#8b2020);}
+  .theme-olive {background:linear-gradient(135deg,#6b8e23,#3d5a0a);}
+
+  .section-items{padding:10px 16px 14px;}
+  .menu-item{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); gap:8px;
+  }
+  .menu-item:last-child{border-bottom:none;}
+  .item-name{font-size:13.5px;font-weight:600;color:var(--text-dark);line-height:1.3;flex:1;}
+  .item-price{
+    font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:var(--coral);
+    white-space:nowrap; background:var(--sand); padding:2px 8px; border-radius:20px; flex-shrink:0;
+  }
+
+  .section-full{grid-column:1/-1;}
+  .section-full .section-inner{display:grid;grid-template-columns:auto 1fr;}
+  .section-full .section-header{
+    writing-mode:vertical-rl; text-orientation:mixed;
+    padding:20px 14px; justify-content:center; min-width:60px;
+  }
+  .section-full .section-title{writing-mode:vertical-rl;}
+  .section-full .section-items{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    padding:14px 16px; gap:0 20px;
+  }
+
+  .sides-box{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;padding:8px 16px 14px;}
+  .side-chip{
+    background:var(--sand); border:1.5px solid var(--sand-dark); border-radius:30px;
+    padding:6px 16px; display:flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:700; color:var(--text-dark);
+  }
+  .side-chip .chip-price{font-family:'Playfair Display',serif;color:var(--coral);font-style:italic;}
+
+  /* ── FOOTER ── */
+  .footer{
+    background:linear-gradient(180deg,var(--ocean) 0%,var(--ocean-deep) 100%);
+    padding:30px 20px; text-align:center; position:relative; overflow:hidden;
+  }
+  .footer::before{
+    content:''; position:absolute; top:0; left:0; right:0;
+    height:50px; background:var(--white); clip-path:ellipse(55% 100% at 50% 0%);
+  }
+  .footer-content{position:relative;z-index:1;padding-top:20px;}
+  .footer p{color:rgba(255,255,255,.8);font-size:13px;letter-spacing:1px;}
+  .footer-brand{font-family:'Pacifico',cursive;font-size:26px;color:var(--sand);margin-bottom:6px;}
+  .palms{font-size:36px;letter-spacing:20px;opacity:.9;margin-bottom:10px;display:block;}
+
+  .floater{
+    position:absolute;opacity:.08;font-size:80px;pointer-events:none;
+    animation:float 8s ease-in-out infinite;z-index:0;
+  }
+  .floater:nth-child(1){top:5%;left:-2%;animation-delay:0s;}
+  .floater:nth-child(2){top:40%;right:-2%;animation-delay:3s;}
+  .floater:nth-child(3){bottom:10%;left:3%;animation-delay:1.5s;}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-20px) rotate(8deg);}}
+
+  [data-i18n],[data-i18n-chip]{transition:opacity .18s;}
+  .lang-fade{opacity:0 !important;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="floater">🦀</div>
+  <div class="floater">🐙</div>
+  <div class="floater">⚓</div>
+
+  <!-- LANGUAGE BAR -->
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="fr"><span class="flag">🇫🇷</span> Français</button>
+    <button class="lang-btn" data-lang="en"><span class="flag">🇬🇧</span> English</button>
+    <button class="lang-btn" data-lang="nl"><span class="flag">🇳🇱</span> Nederlands</button>
+    <button class="lang-btn" data-lang="de"><span class="flag">🇩🇪</span> Deutsch</button>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="sun"></div>
+    <div class="birds">~ ~ ~</div>
+    <div class="logo-wrap">
+      <span class="logo-sub" data-i18n="taglineSub"></span>
+      <div class="logo-main">Espace</div>
+      <div class="logo-accent">Akhmine</div>
+      <div class="arabic-name">فضاء أذمين</div>
+      <span class="tagline" data-i18n="tagline"></span>
+    </div>
+  </header>
+
+  <div class="menu-banner">
+    <h2 data-i18n="menuTitle"></h2>
+    <div class="menu-separator"><span></span><i>🏖️</i><span></span></div>
+  </div>
+
+  <div class="menu-grid">
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-green">
+          <span class="section-icon">🥗</span>
+          <span class="section-title" data-i18n="s_salads"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="salad_nicoise"></span><span class="item-price">45 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="salad_cesar"></span><span class="item-price">55 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="salad_seafood"></span><span class="item-price">65 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="salad_tomato"></span><span class="item-price">50 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="salad_moroccan"></span><span class="item-price">35 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-coral">
+          <span class="section-icon">🌶️</span>
+          <span class="section-title" data-i18n="s_starters"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="ent_pulpe"></span><span class="item-price">60 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="ent_pulpo"></span><span class="item-price">70 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="ent_crevette"></span><span class="item-price">70 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="ent_patatas"></span><span class="item-price">35 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="ent_moules"></span><span class="item-price">65 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-ocean">
+          <span class="section-icon">🍗</span>
+          <span class="section-title" data-i18n="s_mains"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="main_emince_poulet"></span><span class="item-price">70 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="main_broch_poulet"></span><span class="item-price">70 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="main_emince_boeuf"></span><span class="item-price">80 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="main_broch_dinde"></span><span class="item-price">60 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="main_broch_viande"></span><span class="item-price">70 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="main_poulet_grille"></span><span class="item-price">45 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-sand">
+          <span class="section-icon">🍝</span>
+          <span class="section-title" data-i18n="s_pasta"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="pasta_spag_bolo"></span><span class="item-price">55 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="pasta_tagl_mer"></span><span class="item-price">80 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="pasta_las_bolo"></span><span class="item-price">60 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="pasta_las_mer"></span><span class="item-price">70 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="pasta_gratin"></span><span class="item-price">70 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-rose">
+          <span class="section-icon">🍕</span>
+          <span class="section-title" data-i18n="s_pizza"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="pizza_marg"></span><span class="item-price">40 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="pizza_veg"></span><span class="item-price">50 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="pizza_viande"></span><span class="item-price">60 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="pizza_thon"></span><span class="item-price">65 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="pizza_mer"></span><span class="item-price">70 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-olive">
+          <span class="section-icon">🏺</span>
+          <span class="section-title" data-i18n="s_tajines"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="taj_boeuf"></span><span class="item-price">80 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="taj_viande"></span><span class="item-price">80 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="taj_poulet"></span><span class="item-price">80 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section section-full">
+      <div class="section-inner">
+        <div class="section-header theme-teal">
+          <span class="section-icon">🐟</span>
+          <span class="section-title" data-i18n="s_fish"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="fish_friture"></span><span class="item-price">120 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="fish_filet"></span><span class="item-price">100 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="fish_jour"></span><span class="item-price">80 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="fish_calamar"></span><span class="item-price">100 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="fish_broch"></span><span class="item-price">100 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="fish_paella"></span><span class="item-price">95 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="fish_sardine"></span><span class="item-price">250 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-coral">
+          <span class="section-icon">🌮</span>
+          <span class="section-title" data-i18n="s_snacks"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="snack_tacos_v"></span><span class="item-price">50 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="snack_tacos_p"></span><span class="item-price">45 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="snack_panini_v"></span><span class="item-price">50 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="snack_panini_d"></span><span class="item-price">45 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="snack_panini_t"></span><span class="item-price">50 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="snack_burger"></span><span class="item-price">50 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="snack_cheese"></span><span class="item-price">60 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-purple">
+          <span class="section-icon">🍮</span>
+          <span class="section-title" data-i18n="s_desserts"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="des_creme"></span><span class="item-price">30 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="des_fruit"></span><span class="item-price">30 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="des_pomme"></span><span class="item-price">35 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="des_salade"></span><span class="item-price">40 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-olive">
+          <span class="section-icon">🥣</span>
+          <span class="section-title" data-i18n="s_sides"></span>
+        </div>
+        <div class="sides-box">
+          <div class="side-chip" data-i18n-chip="side_bis"></div>
+          <div class="side-chip" data-i18n-chip="side_sauce"></div>
+          <div class="side-chip" data-i18n-chip="side_frites"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-ocean">
+          <span class="section-icon">🥤</span>
+          <span class="section-title" data-i18n="s_drinks"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="drk_soda"></span><span class="item-price">15 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="drk_water"></span><span class="item-price">15 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="drk_sparkling"></span><span class="item-price">15 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="drk_coffee"></span><span class="item-price">15 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="drk_cafe_lait"></span><span class="item-price">15 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="drk_energy"></span><span class="item-price">30 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header theme-sand">
+          <span class="section-icon">🍊</span>
+          <span class="section-title" data-i18n="s_juices"></span>
+        </div>
+        <div class="section-items">
+          <div class="menu-item"><span class="item-name" data-i18n="jus_orange"></span><span class="item-price">20 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="jus_banane"></span><span class="item-price">20 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="jus_avocat"></span><span class="item-price">25 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="jus_mejitto"></span><span class="item-price">20 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="jus_pomme"></span><span class="item-price">20 DH</span></div>
+          <div class="menu-item"><span class="item-name" data-i18n="jus_cocktail"></span><span class="item-price">30 DH</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <span class="palms">🌴 🌊 🌴</span>
+      <div class="footer-brand">Espace Akhmine</div>
+      <p data-i18n="footer_welcome"></p>
+      <p style="margin-top:6px;font-size:12px;opacity:0.6;" data-i18n="footer_sub"></p>
+    </div>
+  </footer>
+</div>
+
+<script>
+const T = {
+  fr: {
+    taglineSub:"Chiringuito de plage", tagline:"🌊 Saveurs de la mer 🌊", menuTitle:"Notre Carte",
+    s_salads:"Les Salades", s_starters:"Entrées Chaudes", s_mains:"Les Plats",
+    s_pasta:"Les Pâtes", s_pizza:"Pizzas", s_tajines:"Tajines",
+    s_fish:"Poissons & Fruits de mer", s_snacks:"Snacks", s_desserts:"Desserts",
+    s_sides:"Accompagnements", s_drinks:"Boissons", s_juices:"Jus Frais",
+    salad_nicoise:"Salade Niçoise", salad_cesar:"Salade César",
+    salad_seafood:"Salade Fruits de mer", salad_tomato:"Salade Tomate Mozzarella", salad_moroccan:"Salade Marocaine",
+    ent_pulpe:"Pulpe Pil-Pil", ent_pulpo:"Pulpo a La Gallega", ent_crevette:"Crevette Pil-Pil",
+    ent_patatas:"Patatas Bravas", ent_moules:"Moules Pil-Pil",
+    main_emince_poulet:"Émincé de Poulet", main_broch_poulet:"Brochette de Poulet",
+    main_emince_boeuf:"Émincé de Bœuf", main_broch_dinde:"Brochette de Dinde",
+    main_broch_viande:"Brochette de Viande", main_poulet_grille:"Poulet Grillé ¼",
+    pasta_spag_bolo:"Spaghetti Bolognaise", pasta_tagl_mer:"Tagliatelle Fruits de mer",
+    pasta_las_bolo:"Lasagne Bolognaise", pasta_las_mer:"Lasagne Fruits de mer", pasta_gratin:"Gratin",
+    pizza_marg:"Pizza Margarita", pizza_veg:"Pizza Végétarienne", pizza_viande:"Pizza Viande Hachée",
+    pizza_thon:"Pizza Thon", pizza_mer:"Pizza Fruits de mer",
+    taj_boeuf:"Tajine Bœuf Pruneaux", taj_viande:"Tajine Viande Hachée", taj_poulet:"Tajine Poulet",
+    fish_friture:"Friture de Poisson", fish_filet:"Filet de Poisson", fish_jour:"Poisson du Jour",
+    fish_calamar:"Friture de Calamar", fish_broch:"Brochette de Poisson",
+    fish_paella:"Paella Fruits de mer", fish_sardine:"Sardine Grillée",
+    snack_tacos_v:"Tacos Viande Hachée", snack_tacos_p:"Tacos Poulet",
+    snack_panini_v:"Panini Viande Hachée", snack_panini_d:"Panini Dinde",
+    snack_panini_t:"Panini au Thon", snack_burger:"Hamburger", snack_cheese:"Cheeseburger",
+    des_creme:"Crème Caramel", des_fruit:"Fruit de Saison", des_pomme:"Pomme Canyya",
+    des_salade:"Salade Fruits Akhmine",
+    side_bis:"Bissara|15 DH", side_sauce:"Sauce Tomate|15 DH", side_frites:"Frites|15 DH",
+    drk_soda:"Soda", drk_water:"Eau Minérale", drk_sparkling:"Oulmes",
+    drk_coffee:"Café Noir", drk_cafe_lait:"Café au Lait", drk_energy:"Boisson Énergétique",
+    jus_orange:"Jus d'Orange", jus_banane:"Jus de Banane", jus_avocat:"Jus d'Avocat",
+    jus_mejitto:"Mejitto", jus_pomme:"Jus de Pomme", jus_cocktail:"Cocktail Akhmine",
+    footer_welcome:"Bienvenue dans notre chiringuito — Bon appétit ! 🐚",
+    footer_sub:"فضاء أذمين · Saveurs marocaines au bord de mer"
+  },
+  en: {
+    taglineSub:"Beach Bar & Restaurant", tagline:"🌊 Flavours from the Sea 🌊", menuTitle:"Our Menu",
+    s_salads:"Salads", s_starters:"Hot Starters", s_mains:"Main Dishes",
+    s_pasta:"Pasta", s_pizza:"Pizzas", s_tajines:"Tagines",
+    s_fish:"Fish & Seafood", s_snacks:"Snacks", s_desserts:"Desserts",
+    s_sides:"Sides", s_drinks:"Drinks", s_juices:"Fresh Juices",
+    salad_nicoise:"Niçoise Salad", salad_cesar:"Caesar Salad",
+    salad_seafood:"Seafood Salad", salad_tomato:"Tomato Mozzarella Salad", salad_moroccan:"Moroccan Salad",
+    ent_pulpe:"Octopus Pil-Pil", ent_pulpo:"Galician-Style Octopus", ent_crevette:"Prawns Pil-Pil",
+    ent_patatas:"Patatas Bravas", ent_moules:"Mussels Pil-Pil",
+    main_emince_poulet:"Sliced Chicken", main_broch_poulet:"Chicken Skewer",
+    main_emince_boeuf:"Sliced Beef", main_broch_dinde:"Turkey Skewer",
+    main_broch_viande:"Meat Skewer", main_poulet_grille:"Grilled Chicken ¼",
+    pasta_spag_bolo:"Spaghetti Bolognese", pasta_tagl_mer:"Seafood Tagliatelle",
+    pasta_las_bolo:"Lasagne Bolognese", pasta_las_mer:"Seafood Lasagne", pasta_gratin:"Gratin",
+    pizza_marg:"Margherita Pizza", pizza_veg:"Vegetarian Pizza", pizza_viande:"Minced Meat Pizza",
+    pizza_thon:"Tuna Pizza", pizza_mer:"Seafood Pizza",
+    taj_boeuf:"Beef & Prune Tagine", taj_viande:"Minced Meat Tagine", taj_poulet:"Chicken Tagine",
+    fish_friture:"Fried Fish", fish_filet:"Fish Fillet", fish_jour:"Fish of the Day",
+    fish_calamar:"Fried Calamari", fish_broch:"Fish Skewer",
+    fish_paella:"Seafood Paella", fish_sardine:"Grilled Sardines",
+    snack_tacos_v:"Minced Meat Tacos", snack_tacos_p:"Chicken Tacos",
+    snack_panini_v:"Minced Meat Panini", snack_panini_d:"Turkey Panini",
+    snack_panini_t:"Tuna Panini", snack_burger:"Hamburger", snack_cheese:"Cheeseburger",
+    des_creme:"Crème Caramel", des_fruit:"Seasonal Fruit", des_pomme:"Pomme Canyya",
+    des_salade:"Akhmine Fruit Salad",
+    side_bis:"Bissara|15 DH", side_sauce:"Tomato Sauce|15 DH", side_frites:"French Fries|15 DH",
+    drk_soda:"Soda", drk_water:"Mineral Water", drk_sparkling:"Sparkling Water",
+    drk_coffee:"Black Coffee", drk_cafe_lait:"White Coffee", drk_energy:"Energy Drink",
+    jus_orange:"Orange Juice", jus_banane:"Banana Juice", jus_avocat:"Avocado Juice",
+    jus_mejitto:"Mojito", jus_pomme:"Apple Juice", jus_cocktail:"Akhmine Cocktail",
+    footer_welcome:"Welcome to our beach bar — Enjoy your meal! 🐚",
+    footer_sub:"فضاء أذمين · Moroccan flavours by the sea"
+  },
+  nl: {
+    taglineSub:"Strandbar & Restaurant", tagline:"🌊 Smaken van de zee 🌊", menuTitle:"Onze Kaart",
+    s_salads:"Salades", s_starters:"Warme Voorgerechten", s_mains:"Hoofdgerechten",
+    s_pasta:"Pasta", s_pizza:"Pizza's", s_tajines:"Tajines",
+    s_fish:"Vis & Zeevruchten", s_snacks:"Snacks", s_desserts:"Desserts",
+    s_sides:"Bijgerechten", s_drinks:"Dranken", s_juices:"Verse Sappen",
+    salad_nicoise:"Salade Niçoise", salad_cesar:"Caesar Salade",
+    salad_seafood:"Zeevruchtensalade", salad_tomato:"Tomaat Mozzarella Salade", salad_moroccan:"Marokkaanse Salade",
+    ent_pulpe:"Inktvis Pil-Pil", ent_pulpo:"Galicische Inktvis", ent_crevette:"Garnalen Pil-Pil",
+    ent_patatas:"Patatas Bravas", ent_moules:"Mosselen Pil-Pil",
+    main_emince_poulet:"Gesneden Kip", main_broch_poulet:"Kipspies",
+    main_emince_boeuf:"Gesneden Rund", main_broch_dinde:"Kalkoenspies",
+    main_broch_viande:"Vleessspies", main_poulet_grille:"Gegrilde Kip ¼",
+    pasta_spag_bolo:"Spaghetti Bolognese", pasta_tagl_mer:"Tagliatelle Zeevruchten",
+    pasta_las_bolo:"Lasagne Bolognese", pasta_las_mer:"Lasagne Zeevruchten", pasta_gratin:"Gratin",
+    pizza_marg:"Margherita Pizza", pizza_veg:"Vegetarische Pizza", pizza_viande:"Pizza Gehakt",
+    pizza_thon:"Tonijn Pizza", pizza_mer:"Zeevruchten Pizza",
+    taj_boeuf:"Tajine Rund met Pruimen", taj_viande:"Tajine Gehakt", taj_poulet:"Kip Tajine",
+    fish_friture:"Gebakken Vis", fish_filet:"Visfilet", fish_jour:"Vis van de Dag",
+    fish_calamar:"Gebakken Calamares", fish_broch:"Visspies",
+    fish_paella:"Zeevruchten Paella", fish_sardine:"Gegrilde Sardines",
+    snack_tacos_v:"Tacos Gehakt", snack_tacos_p:"Tacos Kip",
+    snack_panini_v:"Panini Gehakt", snack_panini_d:"Panini Kalkoen",
+    snack_panini_t:"Panini Tonijn", snack_burger:"Hamburger", snack_cheese:"Cheeseburger",
+    des_creme:"Crème Caramel", des_fruit:"Seizoensfruit", des_pomme:"Pomme Canyya",
+    des_salade:"Akhmine Fruitssalade",
+    side_bis:"Bissara|15 DH", side_sauce:"Tomatensaus|15 DH", side_frites:"Frietjes|15 DH",
+    drk_soda:"Frisdrank", drk_water:"Mineraalwater", drk_sparkling:"Bruisend Water",
+    drk_coffee:"Zwarte Koffie", drk_cafe_lait:"Koffie met Melk", drk_energy:"Energiedrank",
+    jus_orange:"Sinaasappelsap", jus_banane:"Bananensap", jus_avocat:"Avocadosap",
+    jus_mejitto:"Mojito", jus_pomme:"Appelsap", jus_cocktail:"Akhmine Cocktail",
+    footer_welcome:"Welkom in onze strandbar — Eet smakelijk! 🐚",
+    footer_sub:"فضاء أذمين · Marokkaanse smaken aan zee"
+  },
+  de: {
+    taglineSub:"Strandbar & Restaurant", tagline:"🌊 Aromen des Meeres 🌊", menuTitle:"Unsere Karte",
+    s_salads:"Salate", s_starters:"Warme Vorspeisen", s_mains:"Hauptgerichte",
+    s_pasta:"Nudeln", s_pizza:"Pizzen", s_tajines:"Tajines",
+    s_fish:"Fisch & Meeresfrüchte", s_snacks:"Snacks", s_desserts:"Desserts",
+    s_sides:"Beilagen", s_drinks:"Getränke", s_juices:"Frische Säfte",
+    salad_nicoise:"Nizza-Salat", salad_cesar:"César-Salat",
+    salad_seafood:"Meeresfrüchtesalat", salad_tomato:"Tomate-Mozzarella-Salat", salad_moroccan:"Marokkanischer Salat",
+    ent_pulpe:"Tintenfisch Pil-Pil", ent_pulpo:"Tintenfisch Galizische Art", ent_crevette:"Garnelen Pil-Pil",
+    ent_patatas:"Patatas Bravas", ent_moules:"Muscheln Pil-Pil",
+    main_emince_poulet:"Geschnittenes Hähnchen", main_broch_poulet:"Hähnchen-Spieß",
+    main_emince_boeuf:"Geschnittenes Rind", main_broch_dinde:"Puten-Spieß",
+    main_broch_viande:"Fleisch-Spieß", main_poulet_grille:"Gegrilltes Hähnchen ¼",
+    pasta_spag_bolo:"Spaghetti Bolognese", pasta_tagl_mer:"Tagliatelle Meeresfrüchte",
+    pasta_las_bolo:"Lasagne Bolognese", pasta_las_mer:"Lasagne Meeresfrüchte", pasta_gratin:"Gratin",
+    pizza_marg:"Margherita Pizza", pizza_veg:"Vegetarische Pizza", pizza_viande:"Hackfleisch Pizza",
+    pizza_thon:"Thunfisch Pizza", pizza_mer:"Meeresfrüchte Pizza",
+    taj_boeuf:"Rind-Pflaumen Tajine", taj_viande:"Hackfleisch Tajine", taj_poulet:"Hähnchen Tajine",
+    fish_friture:"Gebratener Fisch", fish_filet:"Fischfilet", fish_jour:"Tagesfisch",
+    fish_calamar:"Gebratene Calamares", fish_broch:"Fisch-Spieß",
+    fish_paella:"Meeresfrüchte Paella", fish_sardine:"Gegrillte Sardine",
+    snack_tacos_v:"Hackfleisch Tacos", snack_tacos_p:"Hähnchen Tacos",
+    snack_panini_v:"Hackfleisch Panini", snack_panini_d:"Puten Panini",
+    snack_panini_t:"Thunfisch Panini", snack_burger:"Hamburger", snack_cheese:"Cheeseburger",
+    des_creme:"Crème Caramel", des_fruit:"Saisonobst", des_pomme:"Pomme Canyya",
+    des_salade:"Akhmine Obstsalat",
+    side_bis:"Bissara|15 DH", side_sauce:"Tomatensauce|15 DH", side_frites:"Pommes frites|15 DH",
+    drk_soda:"Limonade", drk_water:"Mineralwasser", drk_sparkling:"Sprudelwasser",
+    drk_coffee:"Schwarzer Kaffee", drk_cafe_lait:"Kaffee mit Milch", drk_energy:"Energydrink",
+    jus_orange:"Orangensaft", jus_banane:"Bananensaft", jus_avocat:"Avocadosaft",
+    jus_mejitto:"Mojito", jus_pomme:"Apfelsaft", jus_cocktail:"Akhmine Cocktail",
+    footer_welcome:"Willkommen in unserer Strandbar — Guten Appetit! 🐚",
+    footer_sub:"فضاء أذمين · Marokkanische Aromen am Meer"
+  }
+};
+
+function applyLang(lang) {
+  const d = T[lang];
+  if (!d) return;
+  const all = [...document.querySelectorAll('[data-i18n],[data-i18n-chip]')];
+  all.forEach(el => el.classList.add('lang-fade'));
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const v = d[el.dataset.i18n];
+      if (v !== undefined) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-chip]').forEach(el => {
+      const v = d[el.dataset.i18nChip];
+      if (v !== undefined) {
+        const [name, price] = v.split('|');
+        el.innerHTML = name + (price ? ' <span class="chip-price">· ' + price + '</span>' : '');
+      }
+    });
+    all.forEach(el => el.classList.remove('lang-fade'));
+  }, 180);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => applyLang(btn.dataset.lang)));
+applyLang('fr');
+</script>
+</body>
+</html>
